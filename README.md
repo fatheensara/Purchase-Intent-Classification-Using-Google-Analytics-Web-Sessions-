@@ -1,53 +1,63 @@
 # Purchase-Intent-Classification-Using-Google-Analytics-Web-Sessions
 
 ### 1.0 INTRODUCTION
-In the digital era, e-commerce platforms generate vast amounts of session-level data. This project focuses on analyzing over 12,000 user sessions to predict the likelihood of a purchase based on "digital footprints" left behind by shoppers. By applying predictive analytics to Google Analytics metrics, we identify behavioral signals—such as page value and exit rates—that distinguish purchasing sessions from non-purchasing ones.
+This project focuses on predicting e-commerce purchase intent by analyzing session-level data from the Online Shopper Intention Dataset. In the digital era, understanding consumer behavior through "digital footprints" is essential for retailers to personalize experiences and increase conversion rates. The system analyzes behavioral metrics such as bounce rates, page values, and session durations to classify whether a user will complete a transaction.
 
 **Key features of this project:**
-*   **Multi-Model Classification**: Implementation and comparison of Logistic Regression, SVM, Random Forest, and XGBoost.
-*   **Imbalance Handling**: Utilization of SMOTE (Synthetic Minority Oversampling Technique) to address class imbalance in shopper conversion data.
-*   **Behavioral Feature Analysis**: Integration of session metrics like bounce rates, page values, and product-related durations.
-*   **Advanced Evaluation**: Use of ROC-AUC curves and Confusion Matrix analysis to ensure high predictive performance.
+*   **Big Data Classification**: Statistical analysis of over 12,000 user sessions with 18 distinct behavioral and temporal features.
+*   **Predictive Modeling**: Implementation of multiple machine learning algorithms including Logistic Regression, SVM, Random Forest, and XGBoost.
+*   **Class Imbalance Handling**: Application of SMOTE (Synthetic Minority Oversampling Technique) to improve model recall for the minority purchase class.
+*   **Interactive Analysis**: Data-driven insights into how visitor types (New vs. Returning) and traffic sources impact revenue.
 
 ### 2.0 OBJECTIVES
 ***
-*   Develop a classification framework to predict e-commerce purchase intent using web session data.
-*   Identify key behavioral features (e.g., session duration, traffic source) that influence a user's decision to buy.
-*   Evaluate and compare machine learning models to determine the most accurate predictor for online shopper behavior.
+*   Develop a classification framework to reliably predict purchase intent using Google Analytics web session data.
+*   Identify key features—such as exit rates and page values—that significantly influence a user's decision to purchase.
+*   Compare the performance of various machine learning models to determine the most effective approach for e-commerce analytics.
+*   Provide actionable insights for SMEs to improve customer segmentation and targeted advertising.
 
 ### 3.0 DATA SOURCES
 ***
-The research utilizes the **Online Shoppers Intention Dataset** from Kaggle, capturing detailed interactions from an e-commerce platform:
-*   **Behavioral Metrics**: Administrative, Informational, and ProductRelated pages and their respective durations.
-*   **Web Metrics**: Bounce rates, Exit rates, and Page values derived from Google Analytics.
-*   **Contextual Data**: Operating systems, browser type, region, traffic source, and temporal markers (weekend vs. weekday, special days/months).
+The project utilizes the **Online Shoppers Intention Dataset** from Kaggle, which includes:
+*   **Behavioral Features**: Administrative, Informational, and Product-Related page visits and durations.
+*   **Web Metrics**: Bounce rates, Exit rates, and Page values.
+*   **Temporal/Contextual Data**: Month of visit, Operating Systems, Browser type, Region, Traffic Type, and Weekend status.
+*   **Target Variable**: Revenue (True/False).
 
-### 4.0 PREREQUISITES & SETUP
+### 4.0 PREREQUISITES
 ***
-To replicate the analysis, ensure the following steps are taken:
-*   **Environment**: Python 3.x with a data science distribution (e.g., Anaconda).
-*   **Data Cleaning**: Perform missing-value treatment (median/mode imputation) and outlier handling via Windsorization.
-*   **Feature Engineering**: Apply one-hot encoding for categorical variables like `VisitorType` and `Month`.
-*   **Library Installation**: `pip install xgboost scikit-learn imbalanced-learn pandas numpy matplotlib seaborn`.
+Before running the analysis, ensure the following steps are completed:
+*   **Environment**: Install a Python 3.x environment (Anaconda or Google Colab recommended).
+*   **Library Installation**: Install the necessary data science libraries:
+    `pip install pandas scikit-learn xgboost imbalanced-learn matplotlib seaborn`
+*   **Dataset Placement**: Ensure the file `online_shoppers_intention.csv` is in the same directory as the notebooks.
+*   **Data Cleaning**: The scripts automatically handle missing value treatment (median/mode imputation) and outlier handling.
 
 ### 5.0 RUNNING THE ANALYSIS
 ***
-The project follows a systematic Big Data workflow:
-1.  **Preprocessing**: Data is normalized using min-max scaling to ensure comparable ranges for distance-based methods.
-2.  **Model Training**: The dataset is split into an 80% training set and a 20% testing set.
-3.  **Optimization**: XGBoost and Random Forest models are tuned to capture complex non-linear relationships in behavioral data.
+The analysis is contained within the following Jupyter Notebooks:
+*   **Main Model**: Run `group_project_bda_classification_model.ipynb` to execute the full machine learning pipeline, including feature encoding and model comparison.
+*   **Code Implementation**: Refer to `code.ipynb` for the modular implementation of the preprocessing and training logic.
+
+**The analysis workflow follows:**
+1.  **Preprocessing**: Categorical features like `VisitorType` and `Month` are converted via Label Encoding.
+2.  **Scaling**: Numerical features are normalized using `StandardScaler`.
+3.  **Training**: The data is split into an 80/20 train-test ratio.
+4.  **Execution**: Models are trained through a `Pipeline` to ensure data integrity.
 
 ### 6.0 EVALUATION
 ***
-The framework’s performance is validated through:
-*   **F1 Score & ROC AUC**: The Random Forest model achieved a leading ROC AUC of 0.9262.
-*   **Recall Improvement**: SMOTE application significantly improved the model's ability to detect the minority "purchase" class.
-*   **Diagnostic Analysis**: Confirmed that sessions resulting in a purchase typically have lower exit rates and higher page values.
+The models are evaluated using a comprehensive suite of metrics:
+*   **ROC-AUC Curve**: Used to measure the model's ability to discriminate between buyers and non-buyers.
+*   **F1-Score**: To assess the balance between precision and recall, especially after applying SMOTE.
+*   **Performance Comparison**: In this study, the **Random Forest** model outperformed others with an **F1 score of 0.65** and an **ROC AUC of 0.9262**.
+*   **Feature Importance**: Analysis confirmed that `PageValues` and `ExitRates` are the strongest predictors of purchase intent.
 
 ### 7.0 REQUIREMENTS
 ***
-*   **Machine Learning**: Scikit-learn, XGBoost, SMOTE.
-*   **Data Handling**: Pandas, NumPy.
+*   **Data Analysis**: Pandas, NumPy.
+*   **Machine Learning**: Scikit-Learn, XGBoost.
+*   **Handling Imbalance**: Imbalanced-learn (SMOTE).
 *   **Visualization**: Matplotlib, Seaborn.
 
 ### 8.0 TEAM
